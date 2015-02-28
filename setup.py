@@ -10,6 +10,8 @@ setup(
     packages=find_packages(),
     install_requires=[
         'rivr',
+        'uritemplate',
+        'negotiator',
     ],
     author='Kyle Fuller',
     author_email='inbox@kylefuller.co.uk',
