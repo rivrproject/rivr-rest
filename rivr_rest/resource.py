@@ -5,8 +5,7 @@ from negotiator import AcceptParameters, ContentType, ContentNegotiator
 
 from rivr.views import View
 from rivr.http import Response
-from rivr_rest.deserialization.json import deserialize_json
-from rivr_rest.deserialization.hal import deserialize_hal
+from rivr_rest.deserialization import deserialize_json, deserialize_hal, deserialize_html
 
 
 class Resource(View):
@@ -71,18 +70,21 @@ class Resource(View):
         return {
             'application/json': json_provider(deserialize_json, 'application/json'),
             'application/hal+json': json_provider(deserialize_hal, 'application/hal+json'),
+            'text/html': lambda: Response(deserialize_html(self)),
         }
 
     def get(self, request):
         content_type_to_acceptable = lambda content_type: AcceptParameters(ContentType(content_type))
         acceptable = map(content_type_to_acceptable, self.content_type_providers().keys())
+        preferred_content_type = self.preferred_content_type
 
-        accept = request.headers.get('HTTP_ACCEPT')
+        accept = request.headers.get('ACCEPT')
+
         negotiator = ContentNegotiator(
-            content_type_to_acceptable(self.preferred_content_type),
+            content_type_to_acceptable(preferred_content_type),
             acceptable)
         negotiated_type = negotiator.negotiate(accept=accept)
-        content_type = negotiated_type.content_type or self.preferred_content_type
+        content_type = negotiated_type.content_type or preferred_content_type
 
         provider = self.content_type_providers()[str(content_type)]
 
