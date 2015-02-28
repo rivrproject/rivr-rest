@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 setup(
     name='rivr-rest',
     version='0.1.0',
-    description='rivr integration to make building REST APIs easy.',
+    description='Library for building REST apis.',
     url='https://github.com/rivrproject/rivr-rest',
     packages=find_packages(),
     install_requires=[

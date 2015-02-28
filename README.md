@@ -4,6 +4,12 @@
 
 A library for building REST APIs with [rivr](https://github.com/rivrproject/rivr).
 
+## Installation
+
+```bash
+$ pip install rivr-rest
+```
+
 ## Example
 
 An example resource representing the repository for rivr.
