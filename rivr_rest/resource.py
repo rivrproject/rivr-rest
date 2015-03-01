@@ -5,7 +5,7 @@ from negotiator import AcceptParameters, ContentType, ContentNegotiator
 
 from rivr.views import View
 from rivr.http import Response
-from rivr_rest.deserialization import deserialize_json, deserialize_hal, deserialize_html
+from rivr_rest.deserialization import deserialize_json, deserialize_hal, deserialize_siren, deserialize_html
 
 
 class Resource(View):
@@ -70,6 +70,7 @@ class Resource(View):
         return {
             'application/json': json_provider(deserialize_json, 'application/json'),
             'application/hal+json': json_provider(deserialize_hal, 'application/hal+json'),
+            'application/vnd.siren+json': json_provider(deserialize_siren, 'application/vnd.siren+json'),
             'text/html': lambda: Response(deserialize_html(self)),
         }
 

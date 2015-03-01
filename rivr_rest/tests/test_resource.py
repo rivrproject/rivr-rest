@@ -53,7 +53,12 @@ class ResourceTests(unittest.TestCase):
 
     def test_content_types(self):
         self.assertEqual(self.resource.content_type_providers().keys(),
-            ['application/json', 'application/hal+json', 'text/html'])
+            [
+                'application/vnd.siren+json',
+                'application/json',
+                'application/hal+json',
+                'text/html',
+            ])
 
     def test_preferred_content_type(self):
         self.assertEqual(self.resource.preferred_content_type,

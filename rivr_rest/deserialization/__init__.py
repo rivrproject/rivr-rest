@@ -1,4 +1,5 @@
 from rivr_rest.deserialization.json_deserializer import deserialize_json
 from rivr_rest.deserialization.hal import deserialize_hal
+from rivr_rest.deserialization.siren import deserialize_siren
 from rivr_rest.deserialization.html import deserialize_html
 
