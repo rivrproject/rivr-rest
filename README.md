@@ -112,6 +112,10 @@ Now when we serialize the resource, the relations will instead be links:
 }
 ```
 
+## See Also
+
+- [rivr-rest-peewee](https://github.com/rivrproject/rivr-rest-peewee) - Resource extensions for building APIs with the Peewee ORM.
+
 ## License
 
 rivr-rest is released under the BSD license. See [LICENSE](LICENSE).
