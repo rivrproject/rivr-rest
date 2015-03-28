@@ -112,6 +112,16 @@ Now when we serialize the resource, the relations will instead be links:
 }
 ```
 
+## Content Types
+
+rivr-rest has support for the following content types using content
+negotiation:
+
+- JSON (application/json)
+- [HAL](http://stateless.co/hal_specification.html) JSON (application/hal+json)
+- [Siren](https://github.com/kevinswiber/siren) JSON (application/vnd.siren+json)
+- HTML (text/html)
+
 ## See Also
 
 - [rivr-rest-peewee](https://github.com/rivrproject/rivr-rest-peewee) - Resource extensions for building APIs with the Peewee ORM.
