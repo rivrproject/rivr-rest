@@ -24,7 +24,7 @@ def extract(uri_template, uri):
     escaped_uri_template = re.escape(uri_template).replace('\{', '{').replace('\}', '}')
 
     def replace(match):
-        return '(?P<{}>[%\.\w\+]+)'.format(match.group(1))
+        return '(?P<{}>[%\.\w\+\@]+)'.format(match.group(1))
 
     pattern = '^{}$'.format(
         re.sub(EXTRACT_VARIABLE_REGEX, replace, escaped_uri_template))
