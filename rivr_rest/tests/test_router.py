@@ -41,4 +41,5 @@ class URITemplateExtractTests(unittest.TestCase):
     def test_simple_variables(self):
         self.assertEqual(extract('/{x}/{y}', '/a/bcd'), {'x': 'a', 'y': 'bcd'})
 
-
+    def test_simple_variable_escaped(self):
+        self.assertEqual(extract('/{email}', '/kyle%40example.com'), {'email': 'kyle@example.com'})

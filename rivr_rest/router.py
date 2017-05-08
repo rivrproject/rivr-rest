@@ -1,4 +1,10 @@
 import re
+
+try:
+    from urllib.parse import unquote
+except ImportError:  # Python 2.7
+    from urllib import unquote
+
 from rivr.http import Http404
 from rivr_rest.resource import Resource
 
@@ -18,14 +24,14 @@ def extract(uri_template, uri):
     escaped_uri_template = re.escape(uri_template).replace('\{', '{').replace('\}', '}')
 
     def replace(match):
-        return '(?P<{}>[\w]+)'.format(match.group(1))
+        return '(?P<{}>[%\.\w\+]+)'.format(match.group(1))
 
     pattern = '^{}$'.format(
         re.sub(EXTRACT_VARIABLE_REGEX, replace, escaped_uri_template))
 
     match = re.match(pattern, uri)
     if match:
-        return match.groupdict()
+        return dict([(k, unquote(v)) for (k, v) in match.groupdict().items()])
 
     return None
 
