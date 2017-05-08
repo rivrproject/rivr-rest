@@ -10,7 +10,7 @@ class SirenDeserializationTests(unittest.TestCase):
 
     def find_link(self, name):
         find = lambda link: name in link['rel']
-        return next(filter(find, self.document['links']))
+        return list(filter(find, self.document['links']))[0]
 
     def find_entity(self, name):
         find = lambda entity: name in entity['rel']
