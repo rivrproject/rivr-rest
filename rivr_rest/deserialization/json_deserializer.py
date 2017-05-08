@@ -3,7 +3,7 @@ from rivr_rest.deserialization.utils import relations
 
 def deserialize_json(resource):
     if isinstance(resource, (list, tuple)):
-        return map(deserialize_json, resource)
+        return list(map(deserialize_json, resource))
 
     document = resource.get_attributes()
 

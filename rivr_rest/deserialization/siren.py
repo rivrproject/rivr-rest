@@ -1,3 +1,4 @@
+from functools import reduce
 from rivr_rest.deserialization.utils import relations
 
 
@@ -9,12 +10,12 @@ def flatten(accumulator, item):
 
 def deserialize_siren(resource, rel=None):
     if isinstance(resource, (list, tuple)):
-        return map(lambda r: deserialize_siren(r, rel), resource)
+        return list(map(lambda r: deserialize_siren(r, rel), resource))
 
     embedded, links = relations(resource)
 
     link = lambda relation: { 'rel': [ relation[0] ], 'href': relation[1].get_uri() }
-    links = map(link, links) + [
+    links = list(map(link, links)) + [
         { 'rel': [ 'self' ], 'href': resource.get_uri() }
     ]
 

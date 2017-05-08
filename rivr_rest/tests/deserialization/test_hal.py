@@ -1,6 +1,6 @@
 import unittest
 from rivr_rest.deserialization.hal import deserialize_hal
-from resources import EmbeddedResource, TestResource
+from .resources import EmbeddedResource, TestResource
 
 
 class HALDeserializationTests(unittest.TestCase):

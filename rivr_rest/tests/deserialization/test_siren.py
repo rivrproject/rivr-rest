@@ -1,6 +1,6 @@
 import unittest
 from rivr_rest.deserialization.siren import deserialize_siren
-from resources import EmbeddedResource, TestResource
+from .resources import EmbeddedResource, TestResource
 
 
 class SirenDeserializationTests(unittest.TestCase):
@@ -10,11 +10,11 @@ class SirenDeserializationTests(unittest.TestCase):
 
     def find_link(self, name):
         find = lambda link: name in link['rel']
-        return filter(find, self.document['links'])[0]
+        return next(filter(find, self.document['links']))
 
     def find_entity(self, name):
         find = lambda entity: name in entity['rel']
-        return filter(find, self.document['entities'])
+        return list(filter(find, self.document['entities']))
 
     def test_includes_attributes(self):
         self.assertEqual(self.document['properties'], {'test': 'value'})

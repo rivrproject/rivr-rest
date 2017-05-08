@@ -1,6 +1,6 @@
 import unittest
 from rivr_rest.deserialization import deserialize_json
-from resources import EmbeddedResource, TestResource
+from .resources import EmbeddedResource, TestResource
 
 
 class JSONDeserializationTests(unittest.TestCase):

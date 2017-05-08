@@ -3,7 +3,7 @@ from rivr_rest.deserialization.utils import relations
 
 def deserialize_hal(resource):
     if isinstance(resource, (list, tuple)):
-        return map(deserialize_hal, resource)
+        return list(map(deserialize_hal, resource))
 
     embedded, links = relations(resource)
     embed = lambda relation: (relation[0], deserialize_hal(relation[1]))
